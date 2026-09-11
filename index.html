@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meridian AI Partners — AI strategy that ships</title>
+<meta name="description" content="AI strategy and implementation consulting. We assess where AI fits in your business, then build it.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='74' fill='none' stroke='%231E2761' stroke-width='10'/%3E%3Cline x1='27' y1='100' x2='173' y2='100' stroke='%231E2761' stroke-width='5' stroke-opacity='0.25'/%3E%3Cpath d='M 100,26 A 33,74 0 0 0 100,174' fill='none' stroke='%231E2761' stroke-width='10' stroke-linecap='round'/%3E%3Ccircle cx='100' cy='26' r='13' fill='%23E8A33D'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  /* ============================================================
+     CONFIG — change your firm name / contact details here only
+     ============================================================ */
+  :root {
+    --ink: #12141C;
+    --panel: #1B1E29;
+    --paper: #F6F5F1;
+    --paper-dim: #EEECE3;
+    --slate: #5B5F6B;
+    --slate-light: #9A9DA8;
+    --line: #DEDCD3;
+    --line-dark: #2C2F3B;
+    --signal: #3A5BFF;
+    --signal-dim: #C9D2FF;
+
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'Inter', -apple-system, sans-serif;
+
+    --max-w: 1120px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; }
+  h1, h2, h3 { font-family: var(--font-display); margin: 0; font-weight: 500; letter-spacing: -0.01em; }
+  p { margin: 0; }
+
+  .wrap {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  /* ---------- Nav ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(246, 245, 241, 0.88);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 76px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .brand-mark { flex-shrink: 0; display: block; }
+  .brand-word { line-height: 1.15; }
+  .brand-word .sub {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #C98A2E;
+    margin-top: 1px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 15px;
+    color: var(--slate);
+    transition: color 0.15s ease;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 10px 20px;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.15s ease;
+  }
+  .nav-cta:hover { background: var(--signal); }
+  .nav-toggle { display: none; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 88px 0 96px;
+  }
+  .hero .wrap {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .hero-eyebrow {
+    font-size: 14px;
+    color: var(--slate);
+    margin-bottom: 22px;
+    max-width: 30ch;
+  }
+  .hero h1 {
+    font-size: clamp(38px, 4.6vw, 58px);
+    line-height: 1.08;
+    color: var(--ink);
+  }
+  .hero-sub {
+    margin-top: 24px;
+    font-size: 18px;
+    color: var(--slate);
+    max-width: 46ch;
+  }
+  .hero-actions {
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--signal);
+    color: #fff;
+    padding: 14px 26px;
+    border-radius: 3px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary:hover { box-shadow: 0 6px 20px rgba(58,91,255,0.28); transform: translateY(-1px); }
+  .link-quiet {
+    font-size: 15px;
+    text-decoration: none;
+    color: var(--ink);
+    border-bottom: 1px solid var(--slate-light);
+    padding-bottom: 2px;
+  }
+  .link-quiet:hover { border-color: var(--ink); }
+
+  /* Scorecard module */
+  .scorecard {
+    background: var(--panel);
+    border-radius: 6px;
+    padding: 28px 28px 24px;
+    color: var(--paper);
+  }
+  .scorecard-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 22px;
+    border-bottom: 1px solid var(--line-dark);
+    padding-bottom: 16px;
+  }
+  .scorecard-head .title {
+    font-family: var(--font-display);
+    font-size: 17px;
+  }
+  .scorecard-head .status {
+    font-size: 12px;
+    color: var(--signal-dim);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #5DE08C;
+    display: inline-block;
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .metric { margin-bottom: 18px; }
+  .metric:last-child { margin-bottom: 0; }
+  .metric-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--slate-light);
+    margin-bottom: 7px;
+  }
+  .metric-row .val { color: var(--paper); font-family: var(--font-body); font-weight: 500; }
+  .bar-track {
+    height: 5px;
+    background: var(--line-dark);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    background: var(--signal);
+    border-radius: 3px;
+    width: 0%;
+    transition: width 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .scorecard-note {
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--slate-light);
+    padding-top: 16px;
+    border-top: 1px solid var(--line-dark);
+  }
+
+  /* ---------- Section shared ---------- */
+  section { padding: 96px 0; }
+  .section-line { border-top: 1px solid var(--line); }
+  .kicker-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 48px;
+    margin-bottom: 56px;
+  }
+  .kicker-row h2 {
+    font-size: clamp(28px, 3vw, 36px);
+    line-height: 1.2;
+  }
+  .kicker-row .kicker-support {
+    color: var(--slate);
+    font-size: 17px;
+    max-width: 52ch;
+    padding-top: 6px;
+  }
+
+  /* ---------- POV statement ---------- */
+  .pov {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .pov .wrap { max-width: 880px; }
+  .pov p.lede {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.42;
+    color: var(--paper);
+  }
+  .pov .attribution {
+    margin-top: 28px;
+    font-size: 14px;
+    color: var(--slate-light);
+  }
+
+  /* ---------- Services ---------- */
+  .service-list { border-top: 1px solid var(--line); }
+  .service {
+    display: grid;
+    grid-template-columns: 90px 1.1fr 1.4fr;
+    gap: 32px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: start;
+  }
+  .service .num {
+    font-family: var(--font-display);
+    font-size: 15px;
+    color: var(--slate-light);
+    padding-top: 3px;
+  }
+  .service h3 { font-size: 22px; }
+  .service p { color: var(--slate); font-size: 15.5px; margin-top: 10px; max-width: 48ch; }
+  .service .deliverable {
+    font-size: 13px;
+    color: var(--slate);
+    background: var(--paper-dim);
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 3px;
+    margin-top: 14px;
+  }
+
+  /* ---------- Proof ---------- */
+  .proof { background: var(--paper-dim); }
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+  }
+  .proof-stat .num {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 4vw, 48px);
+    color: var(--signal);
+  }
+  .proof-stat p {
+    margin-top: 10px;
+    font-size: 15px;
+    color: var(--slate);
+    max-width: 30ch;
+  }
+
+  /* ---------- About ---------- */
+  .about .wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+  .about h2 { font-size: clamp(26px, 3vw, 34px); margin-bottom: 22px; }
+  .about p { color: var(--slate); font-size: 16px; margin-bottom: 16px; }
+  .about-facts { list-style: none; margin: 24px 0 0; padding: 0; border-top: 1px solid var(--line); }
+  .about-facts li {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    font-size: 14.5px;
+  }
+  .about-facts .label { color: var(--slate); }
+
+  /* ---------- Contact ---------- */
+  .contact { background: var(--ink); color: var(--paper); }
+  .contact .wrap {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 64px;
+  }
+  .contact h2 { color: var(--paper); font-size: clamp(28px, 3vw, 36px); }
+  .contact-sub { margin-top: 18px; color: var(--slate-light); font-size: 16px; max-width: 42ch; }
+  .contact-alt {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line-dark);
+  }
+  .contact-alt a {
+    color: var(--signal-dim);
+    text-decoration: none;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(201,210,255,0.4);
+  }
+  .contact-alt a:hover { border-color: var(--signal-dim); }
+  .contact-alt .cal-label { font-size: 13px; color: var(--slate-light); margin-bottom: 8px; }
+
+  form.lead-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .field label {
+    display: block;
+    font-size: 13px;
+    color: var(--slate-light);
+    margin-bottom: 7px;
+  }
+  .field input,
+  .field textarea {
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--line-dark);
+    border-radius: 3px;
+    padding: 12px 14px;
+    color: var(--paper);
+    font-family: var(--font-body);
+    font-size: 15px;
+  }
+  .field input:focus,
+  .field textarea:focus {
+    border-color: var(--signal);
+  }
+  .field textarea { resize: vertical; min-height: 96px; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .form-submit {
+    margin-top: 6px;
+    align-self: flex-start;
+  }
+  .form-status {
+    font-size: 14px;
+    margin-top: 4px;
+    min-height: 20px;
+  }
+  .form-status.ok { color: #5DE08C; }
+  .form-status.err { color: #FF8A8A; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    padding: 40px 0;
+    border-top: 1px solid var(--line);
+  }
+  footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--slate);
+  }
+  footer .foot-links { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; }
+  footer a { text-decoration: none; color: var(--slate); }
+  footer a:hover { color: var(--ink); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 860px) {
+    .nav-links { display: none; }
+    .hero .wrap { grid-template-columns: 1fr; }
+    .kicker-row { grid-template-columns: 1fr; gap: 16px; }
+    .service { grid-template-columns: 1fr; gap: 8px; }
+    .service .num { padding-top: 0; }
+    .proof-grid { grid-template-columns: 1fr; gap: 32px; }
+    .about .wrap { grid-template-columns: 1fr; }
+    .contact .wrap { grid-template-columns: 1fr; }
+    .field-row { grid-template-columns: 1fr; }
+    footer .wrap { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="#top" class="brand">
+      <svg class="brand-mark" width="34" height="34" viewBox="0 0 200 200" aria-hidden="true">
+        <circle cx="100" cy="100" r="74" fill="none" stroke="#1E2761" stroke-width="9"/>
+        <line x1="27" y1="100" x2="173" y2="100" stroke="#1E2761" stroke-width="4" stroke-opacity="0.25"/>
+        <path d="M 100,26 A 33,74 0 0 0 100,174" fill="none" stroke="#1E2761" stroke-width="9" stroke-linecap="round"/>
+        <circle cx="100" cy="26" r="12" fill="#E8A33D"/>
+      </svg>
+      <span class="brand-word">Meridian<span class="sub">AI PARTNERS</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Book intro call</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="hero-eyebrow">Websites, chatbots, and AI systems — for companies and individuals</p>
+        <h1>Most AI projects fail before anyone writes a line of code.</h1>
+        <p class="hero-sub">We start by finding out where a website, a bot, or an AI system actually pays off for you — then we build and deploy it ourselves. No pilot purgatory, no platform for platform's sake.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">Book a 30-minute intro call</a>
+          <a href="#process" class="link-quiet">See how an engagement runs</a>
+        </div>
+      </div>
+
+      <div class="scorecard" id="scorecard">
+        <div class="scorecard-head">
+          <span class="title">Readiness scorecard</span>
+          <span class="status"><span class="dot"></span>Sample assessment</span>
+        </div>
+        <div class="metric">
+          <div class="metric-row"><span>Data readiness</span><span class="val">72%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-target="72"></div></div>
+        </div>
+        <div class="metric">
+          <div class="metric-row"><span>Process fit</span><span class="val">58%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-target="58"></div></div>
+        </div>
+        <div class="metric">
+          <div class="metric-row"><span>Team capacity</span><span class="val">64%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-target="64"></div></div>
+        </div>
+        <div class="metric">
+          <div class="metric-row"><span>12-month ROI potential</span><span class="val">81%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-target="81"></div></div>
+        </div>
+        <p class="scorecard-note">This is what week one produces — a scored map of where AI will and won't move your numbers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- POV -->
+  <section class="pov">
+    <div class="wrap">
+      <p class="lede">The technology is rarely the hard part. The hard part is deciding which three processes are worth touching, in what order, and who owns them once we leave. We spend the first two weeks on that decision, not on a demo.</p>
+      <p class="attribution">— The approach we bring to every engagement</p>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="section-line">
+    <div class="wrap">
+      <div class="kicker-row">
+        <h2>What we build</h2>
+        <p class="kicker-support">Six services, each usable on its own. Most clients start with consulting or a single build and add the rest once it's paying off.</p>
+      </div>
+
+      <div class="service-list">
+        <div class="service">
+          <span class="num">01</span>
+          <h3>AI consulting</h3>
+          <div>
+            <p>A structured review of your workflows and data to find where AI actually changes your cost or revenue line — and where it plainly won't help yet.</p>
+            <span class="deliverable">Deliverable: scored roadmap, 1–2 weeks</span>
+          </div>
+        </div>
+        <div class="service">
+          <span class="num">02</span>
+          <h3>Website building</h3>
+          <div>
+            <p>A fast, modern website built around what your business actually sells or does — not a generic template with your logo dropped on top.</p>
+            <span class="deliverable">Deliverable: live website, 1–3 weeks</span>
+          </div>
+        </div>
+        <div class="service">
+          <span class="num">03</span>
+          <h3>AI chatbots</h3>
+          <div>
+            <p>A chatbot trained on your business — your products, your policies, your tone — that can actually answer customer questions instead of deflecting to a form.</p>
+            <span class="deliverable">Deliverable: trained chatbot, 1–2 weeks</span>
+          </div>
+        </div>
+        <div class="service">
+          <span class="num">04</span>
+          <h3>Bot deployment</h3>
+          <div>
+            <p>We put the bot where your customers already are — your website, WhatsApp, Instagram, or Slack — and connect it to the systems it needs to be useful, not just conversational.</p>
+            <span class="deliverable">Deliverable: live, connected bot</span>
+          </div>
+        </div>
+        <div class="service">
+          <span class="num">05</span>
+          <h3>Custom AI solutions</h3>
+          <div>
+            <p>When the off-the-shelf tools don't fit, we design and build something specific to your business or your individual workflow — from scratch if needed.</p>
+            <span class="deliverable">Deliverable: working system, timeline scoped per project</span>
+          </div>
+        </div>
+        <div class="service">
+          <span class="num">06</span>
+          <h3>Data analysis</h3>
+          <div>
+            <p>We turn the data you're already sitting on into a clear read of what's working, what isn't, and what to do next — delivered in plain language, not just a dashboard.</p>
+            <span class="deliverable">Deliverable: analysis report + recommendations</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process" class="section-line">
+    <div class="wrap">
+      <div class="kicker-row">
+        <h2>How an engagement runs</h2>
+        <p class="kicker-support">Four phases, in this order, every time. We don't start building until phase one is signed off by you.</p>
+      </div>
+
+      <div class="service-list">
+        <div class="service">
+          <span class="num">Phase 1</span>
+          <h3>Assess</h3>
+          <div><p>Interviews with your team, a review of existing data and tools, and a scored map of where AI helps and where it doesn't.</p></div>
+        </div>
+        <div class="service">
+          <span class="num">Phase 2</span>
+          <h3>Design</h3>
+          <div><p>A specific plan for the highest-scoring opportunity: what gets built, what it replaces or touches, and what success looks like in numbers.</p></div>
+        </div>
+        <div class="service">
+          <span class="num">Phase 3</span>
+          <h3>Build</h3>
+          <div><p>We build in the open, with a working version in your hands inside the first two weeks so you're never reviewing something finished for the first time.</p></div>
+        </div>
+        <div class="service">
+          <span class="num">Phase 4</span>
+          <h3>Operate</h3>
+          <div><p>Handover, training, and a 30-day check-in to confirm the system is actually being used the way it was designed to be.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section class="proof section-line">
+    <div class="wrap">
+      <div class="proof-grid">
+        <div class="proof-stat">
+          <p class="num">3–4</p>
+          <p>Client engagements run at a time, by design, so senior consultants stay hands-on through the whole build.</p>
+        </div>
+        <div class="proof-stat">
+          <p class="num">2 wks</p>
+          <p>Typical time from signed assessment to the first working version a client can click through.</p>
+        </div>
+        <div class="proof-stat">
+          <p class="num">100%</p>
+          <p>Of assessments end with a written recommendation — including when the honest answer is "not yet."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about section-line">
+    <div class="wrap">
+      <div>
+        <h2>Built to stay small on purpose</h2>
+        <p>Meridian AI Partners is a hands-on consultancy, not an agency with a bench of juniors. The person who scopes your project is the person who builds it.</p>
+        <p>We turn down work that's a better fit for an off-the-shelf tool, and we say so plainly during consulting — that's usually why clients trust the roadmap enough to act on it.</p>
+      </div>
+      <ul class="about-facts">
+        <li><span class="label">Focus</span><span>Websites, chatbots, and custom AI</span></li>
+        <li><span class="label">Clients</span><span>Companies and individual founders</span></li>
+        <li><span class="label">Engagement length</span><span>1–12 weeks, scoped per project</span></li>
+        <li><span class="label">Based in</span><span>Remote, works across time zones</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div>
+        <h2>Tell us where it's slow, manual, or missing entirely.</h2>
+        <p class="contact-sub">Whether you're a company or working solo, fill this in and we'll reply within one business day with next steps — usually a scheduling link for the intro call.</p>
+
+        <div class="contact-alt">
+          <p class="cal-label">Prefer to skip the form?</p>
+          <a href="https://wa.me/254740853686" target="_blank" rel="noopener">Message us on WhatsApp: +254 740 853 686 →</a>
+          <p class="cal-label" style="margin-top:18px;">Or email directly:</p>
+          <a href="mailto:kibetalvinne@gmail.com">kibetalvinne@gmail.com</a>
+        </div>
+      </div>
+
+      <form class="lead-form" id="leadForm" novalidate>
+        <div class="field-row">
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="company">Company <span style="font-weight:400;">(optional)</span></label>
+            <input type="text" id="company" name="company" autocomplete="organization">
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Work email</label>
+          <input type="email" id="email" name="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="message">What's the problem you're trying to solve?</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="btn-primary form-submit">Send message</button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span style="display:flex; align-items:center; gap:8px;">
+      <svg width="16" height="16" viewBox="0 0 200 200" aria-hidden="true" style="flex-shrink:0;">
+        <circle cx="100" cy="100" r="74" fill="none" stroke="#5B6072" stroke-width="10"/>
+        <path d="M 100,26 A 33,74 0 0 0 100,174" fill="none" stroke="#5B6072" stroke-width="10" stroke-linecap="round"/>
+        <circle cx="100" cy="26" r="13" fill="#C98A2E"/>
+      </svg>
+      © 2026 Meridian AI Partners
+    </span>
+    <ul class="foot-links">
+      <li><a href="mailto:kibetalvinne@gmail.com">kibetalvinne@gmail.com</a></li>
+      <li><a href="https://wa.me/254740853686" target="_blank" rel="noopener">+254 740 853 686</a></li>
+      <li><a href="#top">Back to top</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  // ============================================================
+  // Scorecard bar animation — plays once when scrolled into view
+  // ============================================================
+  const bars = document.querySelectorAll('.bar-fill');
+  const scorecard = document.getElementById('scorecard');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        bars.forEach(bar => {
+          bar.style.width = bar.dataset.target + '%';
+        });
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.4 });
+  if (scorecard) observer.observe(scorecard);
+
+  // ============================================================
+  // Contact form submit handler
+  //
+  // Uses FormSubmit.co — a free service that emails form
+  // submissions straight to the address below. No backend,
+  // no account signup required.
+  //
+  // ONE-TIME SETUP: the very first time this form is submitted,
+  // FormSubmit sends a confirmation email to kibetalvinne@gmail.com.
+  // Open it and click "Confirm my email" — after that, every
+  // future submission is delivered automatically with no extra step.
+  // ============================================================
+  const NOTIFY_EMAIL = "kibetalvinne@gmail.com";
+  const FORM_ENDPOINT = `https://formsubmit.co/ajax/${NOTIFY_EMAIL}`;
+
+  const form = document.getElementById('leadForm');
+  const status = document.getElementById('formStatus');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.textContent = '';
+    status.className = 'form-status';
+
+    if (!form.checkValidity()) {
+      status.textContent = 'Please fill in every required field with a valid email.';
+      status.className = 'form-status err';
+      form.reportValidity();
+      return;
+    }
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    const data = new FormData(form);
+    // Nicer email subject line on FormSubmit's end
+    data.append('_subject', `New inquiry from ${data.get('name')} (${data.get('company') || 'individual'})`);
+
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        status.textContent = "Thanks — we'll reply within one business day.";
+        status.className = 'form-status ok';
+        form.reset();
+      } else {
+        throw new Error('Non-200 response');
+      }
+    } catch (err) {
+      // Fallback: open the visitor's email client pre-addressed to you
+      const subject = encodeURIComponent(`New inquiry from ${data.get('name')} (${data.get('company') || 'individual'})`);
+      const body = encodeURIComponent(
+        `Name: ${data.get('name')}\nCompany: ${data.get('company') || 'N/A'}\nEmail: ${data.get('email')}\n\n${data.get('message')}`
+      );
+      window.location.href = `mailto:${NOTIFY_EMAIL}?subject=${subject}&body=${body}`;
+      status.textContent = 'Could not send automatically — opening your email client instead.';
+      status.className = 'form-status err';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send message';
+    }
+  });
+</script>
+
+</body>
+</html>
